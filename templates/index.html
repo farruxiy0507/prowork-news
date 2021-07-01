@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+{% load static i18n %}
+{% load app_tags %}
+{% get_current_language as LANGUGES_CODE %}
+{% get_available_languages as languages %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<ul class="list-group" id="list-group">
+    {% for language , title in languages %}
+        <li id="en" onclick="changeSelect('En')" {% if language == LANGUGES_CODE %}{% endif %}>
+            {% get_url_tag request=request lang=language as url %}<a href="{{ url }}">{{ language }}</a></li>
+    {% endfor %}
+</ul>
+<body>
+    <div style="margin: 0px ; padding: 0px">
+        {% for categories in all_category %}
+        <a href="{{ categories.get_absolute_url }}"> {{ categories.name }}</a>
+        {% endfor %}
+    </div>
+
+
+    <div style="margin: 0px ; padding: 0px">
+        {% for names in all_regions %}
+        <a href="{{ names.get_absolute_url }}"> {{ names.name }}</a>
+        {% endfor %}
+    </div>
+
+    {% for datas in object_list %}
+        <a href="{{ datas.get_absolute_url }}">{{ datas.title | safe}}</a><br>
+    {% if datas.image %}<br>
+
+    <img src="{{ datas.image.url }}" alt=""><br>
+    {% endif %}
+     {{ datas.description | safe | truncatechars:100 }}<br>
+    {% endfor %}
+
+    <h1>{% trans  'Tarjima boladigan text' %}</h1>
+    <h1>{% trans  'Tarjima boladigan ikkinchi text' %}</h1>
+
+
+
+    <div>
+        <p></p>
+    </div>
+
+
+
+    <h1>{% trans  'Tarjima boladigan text' %}</h1>
+</body>
+</html>

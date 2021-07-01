@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Detail Page</title>
+</head>
+<body>
+    <h1>{{ object.title }}</h1> <br><br>
+    <h1>{{ object.created_at }}</h1>
+<!--    <img src="{{ object.image.url }}" alt="">-->
+    <p>{{ object.description | safe }}</p>
+    <a href="{{ object.get_absolute_url }}">#{{ object.hashtag }}</a>
+</body>
+</html>
